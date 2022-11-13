@@ -12,10 +12,10 @@ struct Task {
     let status: String
 }
 let taskNames = [
-    Task(title: "Task 1", status: "Completed"),
+    Task(title: " ̶T̶a̶s̶k̶ ̶1̶", status: "Completed"),
     Task(title: "Task 2", status: "Cancelled"),
     Task(title: "Task 3", status: "November 13 2022"),
-    Task(title: "Task 4", status: "Completed"),
+    Task(title: "T̶a̶s̶k̶ ̶4̶", status: "Completed"),
     Task(title: "Task 5", status: "Overdue"),
 ]
 
