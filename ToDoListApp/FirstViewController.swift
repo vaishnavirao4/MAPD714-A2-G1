@@ -114,6 +114,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                navigationController?.pushViewController(secondViewController!, animated: true)
     }
     
+    //Switch function for task status
     @objc func isCompletedBtn(_ sender: UISwitch) {
         let selectedIndex = IndexPath(row: sender.tag, section: 0)
         let selectedTask = models[selectedIndex[1]]
