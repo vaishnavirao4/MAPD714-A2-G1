@@ -64,11 +64,8 @@
                                                     <buttonConfiguration key="configuration" style="plain">
                                                         <imageReference key="image" image="square.and.pencil" catalog="system" symbolScale="large"/>
                                                     </buttonConfiguration>
-                                                    <connections>
-                                                        <segue destination="3Wt-Go-Kw3" kind="show" id="Vve-Sb-ytz"/>
-                                                    </connections>
                                                 </button>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hGo-Lb-8di">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hGo-Lb-8di">
                                                     <rect key="frame" x="234" y="12.666666666666742" width="51" height="31.000000000000004"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </switch>
@@ -84,6 +81,8 @@
                                         <connections>
                                             <outlet property="TaskSubtitle" destination="J3f-MV-nDr" id="Y8X-wb-DBe"/>
                                             <outlet property="TaskTitle" destination="sj6-Wh-aRz" id="h9m-Fs-FVk"/>
+                                            <outlet property="editTask" destination="GUf-NU-CmG" id="0Z8-XA-zKg"/>
+                                            <outlet property="isCompleteSwitch" destination="hGo-Lb-8di" id="Zg6-Fz-gdj"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -97,7 +96,7 @@
                                     <color key="baseBackgroundColor" red="0.0" green="0.55294117649999996" blue="0.69411764710000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="3Wt-Go-Kw3" kind="show" id="QvX-eZ-BxV"/>
+                                    <action selector="AddTask:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wf9-LJ-3gy"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -116,7 +115,7 @@
         <!--Second View Controller-->
         <scene sceneID="Ve4-6m-Ot6">
             <objects>
-                <viewController id="3Wt-Go-Kw3" customClass="SecondViewController" customModule="ToDoListApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SecondViewController" id="3Wt-Go-Kw3" customClass="SecondViewController" customModule="ToDoListApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uNS-4l-5Op">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -132,7 +131,7 @@
                                         <color key="textColor" red="0.0" green="0.55294117649999996" blue="0.69411764710000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ToDo Name" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ppo-NG-NIJ">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ToDo Name" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ppo-NG-NIJ">
                                         <rect key="frame" x="100" y="11" width="270" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -177,6 +176,9 @@
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wpe-xv-fL1">
                                         <rect key="frame" x="308" y="16" width="49" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="hasDueDateToggle:" destination="3Wt-Go-Kw3" eventType="valueChanged" id="wEr-jB-U4R"/>
+                                        </connections>
                                     </switch>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -188,6 +190,9 @@
                                     <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" datePickerMode="dateAndTime" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="3jt-L3-30x">
                                         <rect key="frame" x="8" y="-4" width="374" height="212"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="DatePicker:" destination="3Wt-Go-Kw3" eventType="valueChanged" id="FEk-6Y-3V2"/>
+                                        </connections>
                                     </datePicker>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -206,22 +211,34 @@
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pky-Nv-ldA">
                                         <rect key="frame" x="308" y="16" width="49" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="isCompletedToggle:" destination="3Wt-Go-Kw3" eventType="valueChanged" id="hYY-6j-QeY"/>
+                                        </connections>
                                     </switch>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j0e-LO-suu">
-                                <rect key="frame" x="-2" y="777" width="395" height="41"/>
+                                <rect key="frame" x="-3" y="777" width="395" height="41"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem image="clear.fill" catalog="system" width="130" style="plain" id="0r7-Gf-5Zj" userLabel="cancel">
                                         <color key="tintColor" red="0.0" green="0.55294117649999996" blue="0.69411764710000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="CancelBtn:" destination="3Wt-Go-Kw3" id="m65-ZB-LSI"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem image="trash.fill" catalog="system" width="130" style="plain" id="k70-fF-Nxt" userLabel="delete">
                                         <color key="tintColor" red="0.0" green="0.55294117649999996" blue="0.69411764710000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="DeleteTask:" destination="3Wt-Go-Kw3" id="8yH-ZX-xaq"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem image="rectangle.and.pencil.and.ellipsis.rtl" catalog="system" width="130" style="plain" id="D6Q-zx-a3E" userLabel="save">
                                         <color key="tintColor" red="0.0" green="0.55294117649999996" blue="0.69411764710000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="UpdateTask:" destination="3Wt-Go-Kw3" id="Obp-Li-4bv"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                                 <color key="tintColor" red="0.0" green="0.55294117649999996" blue="0.69411764710000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -246,6 +263,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="dLy-jR-9Sk"/>
                     <connections>
+                        <outlet property="DatePicker" destination="3jt-L3-30x" id="3FA-rJ-Ixk"/>
+                        <outlet property="hasDueDateSwitch" destination="wpe-xv-fL1" id="hU4-Op-J69"/>
+                        <outlet property="isCompleteSwitch" destination="pky-Nv-ldA" id="uw5-u5-46t"/>
+                        <outlet property="taskName" destination="Ppo-NG-NIJ" id="EY5-0j-pR4"/>
                         <outlet property="textView" destination="wvy-6U-sqF" id="0By-fb-47o"/>
                     </connections>
                 </viewController>
@@ -272,9 +293,6 @@
             <point key="canvasLocation" x="-72.51908396946564" y="3.5211267605633805"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="Vve-Sb-ytz"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="clear.fill" catalog="system" width="128" height="114"/>
         <image name="list.bullet.rectangle.fill" catalog="system" width="128" height="93"/>

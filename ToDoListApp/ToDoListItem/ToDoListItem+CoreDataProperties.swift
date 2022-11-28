@@ -22,25 +22,24 @@ Kowndinya Varanasi 301210621
 
 */
 
-import UIKit
+import Foundation
+import CoreData
 
-class CustomCell: UITableViewCell {
 
-    
-    @IBOutlet weak var TaskTitle: UILabel!
-    @IBOutlet weak var TaskSubtitle: UILabel!
-    @IBOutlet weak var isCompleteSwitch: UISwitch!
-    @IBOutlet weak var editTask: UIButton!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+extension ToDoListItem {
+
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<ToDoListItem> {
+        return NSFetchRequest<ToDoListItem>(entityName: "ToDoListItem")
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    @NSManaged public var name: String?
+    @NSManaged public var notes: String?
+    @NSManaged public var hasDueDate: Bool
+    @NSManaged public var dueDate: Date?
+    @NSManaged public var isCompleted: Bool
 
-        // Configure the view for the selected state
-    }
+}
+
+extension ToDoListItem : Identifiable {
 
 }

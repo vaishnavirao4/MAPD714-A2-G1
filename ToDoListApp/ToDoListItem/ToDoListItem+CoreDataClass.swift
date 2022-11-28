@@ -21,26 +21,8 @@ Kowndinya Varanasi 301210621
  The update button will update the existing task
 
 */
+import Foundation
+import CoreData
 
-import UIKit
-
-class CustomCell: UITableViewCell {
-
-    
-    @IBOutlet weak var TaskTitle: UILabel!
-    @IBOutlet weak var TaskSubtitle: UILabel!
-    @IBOutlet weak var isCompleteSwitch: UISwitch!
-    @IBOutlet weak var editTask: UIButton!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
-}
+@objc(ToDoListItem)
+public class ToDoListItem: NSManagedObject {}
