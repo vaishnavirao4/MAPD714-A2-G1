@@ -45,6 +45,7 @@ class SecondViewController: UIViewController {
         isCompleteSwitch.setOn(itemData.isCompleted, animated:true)
     }
     
+    //Function for each button and text field
     @IBOutlet weak var taskName: UITextField!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var hasDueDateSwitch: UISwitch!
@@ -57,6 +58,7 @@ class SecondViewController: UIViewController {
     var dueDate: Date = Date()
     var datePicker:Bool?
     
+    //Cancel button function
     @IBAction func CancelBtn(_ sender: UIBarButtonItem) {
         // create the actual alert controller view that will be the pop-up
         let alertController = UIAlertController(title: "Cancel Changes", message: "Are you sure you want to cancel?", preferredStyle: .alert)
@@ -71,6 +73,7 @@ class SecondViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
+    //The task is completed switch function
     @IBAction func isCompletedToggle(_ sender: UISwitch) {
         if(sender.isOn) {
             isCompleted = true
@@ -80,6 +83,7 @@ class SecondViewController: UIViewController {
         }
     }
 
+    //Has due date switch function
     @IBAction func hasDueDateToggle(_ sender: UISwitch) {
         if(sender.isOn){
             hasDueDate = true
@@ -90,10 +94,12 @@ class SecondViewController: UIViewController {
         }
     }
     
+    //Function for date picker
     @IBAction func DatePicker(_ sender: UIDatePicker) {
         dueDate = DatePicker.date
     }
     
+    //Delete button function
     @IBAction func DeleteTask(_ sender: UIBarButtonItem) {
         // create the actual alert controller view that will be the pop-up
         let alertController = UIAlertController(title: "Delete Task", message: "You cannot undo this action", preferredStyle: .alert)
@@ -120,6 +126,7 @@ class SecondViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
+    //Update button function
     @IBAction func UpdateTask(_ sender: UIBarButtonItem) {
         // create the actual alert controller view that will be the pop-up
         let alertController = UIAlertController(title: "Update Task", message: "Are you sure you want to update task details?", preferredStyle: .alert)

@@ -77,6 +77,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
+    //Function for tasks
     @IBOutlet weak var TaskTableView: UITableView!
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -100,6 +101,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         getAllItems()
     }
     
+    //Function for edit task button
     @objc func editTaskBtn(sender: UIButton) {
         let selectedIndex = IndexPath(row: sender.tag, section: 0)
         let selectedTask = models[selectedIndex[1]]
@@ -124,6 +126,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         catch {}
     }
     
+    //Function for adding a new task
     @IBAction func AddTask(_ sender: UIButton) {
 
         // create the actual alert controller view that will be the pop-up
@@ -155,7 +158,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     // Core Data
-    
+    //The values entered gets stored in a core database
     func getAllItems() {
         do {
             models = try context.fetch(ToDoListItem.fetchRequest())
