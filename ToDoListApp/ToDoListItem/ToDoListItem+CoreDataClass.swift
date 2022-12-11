@@ -1,6 +1,6 @@
 /**App Name: ToDoListApp
-Version: 2.0
-Created on: 25-11-2022
+Version: 3.0
+Created on: 10-12-2022
  
  
 Created by:
@@ -19,6 +19,9 @@ Kowndinya Varanasi 301210621
  The cancel button will move back from the main page,
  The delete button will delete the current task,
  The update button will update the existing task
+ For the part 3 we included swiping gestures
+ If we swipe from left to write, we can edit the task
+ If we swipe from right to left, we can delete the task
 
 */
 import Foundation

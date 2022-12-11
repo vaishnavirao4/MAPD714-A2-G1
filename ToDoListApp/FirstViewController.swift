@@ -1,6 +1,6 @@
 /**App Name: ToDoListApp
-Version: 2.0
-Created on: 25-11-2022
+Version: 3.0
+Created on: 10-12-2022
  
  
 Created by:
@@ -19,12 +19,38 @@ Kowndinya Varanasi 301210621
  The cancel button will move back from the main page,
  The delete button will delete the current task,
  The update button will update the existing task
+ For the part 3 we included swiping gestures
+ If we swipe from left to write, we can edit the task
+ If we swipe from right to left, we can delete the task
 
 */
 
 import UIKit
 
 class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    //Function for tasks
+    @IBOutlet weak var TaskTableView: UITableView!
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private var models = [ToDoListItem]()
+    var itemData = ToDoListItem()
+    
+    var hasDueDate: Bool = false;
+    var isCompleted: Bool = false;
+    var dueDate: Date = Date()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        TaskTableView.dataSource = self
+        TaskTableView.delegate = self
+        getAllItems()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getAllItems()
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
@@ -62,7 +88,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: models[indexPath.row].name!)
                 attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSRange(location: 0, length: attributeString.length))
             cell.TaskTitle?.attributedText = attributeString
-            cell.TaskSubtitle?.text = "completed"
+            cell.TaskSubtitle?.text = "Completed"
         }
         else {
             let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: models[indexPath.row].name!)
@@ -77,28 +103,41 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
-    //Function for tasks
-    @IBOutlet weak var TaskTableView: UITableView!
-    
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    private var models = [ToDoListItem]()
-    
-    var itemData = ToDoListItem()
-    
-    var hasDueDate: Bool = false;
-    var isCompleted: Bool = false;
-    var dueDate: Date = Date()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        TaskTableView.dataSource = self
-        TaskTableView.delegate = self
-        getAllItems()
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let complete = UIContextualAction(style: .normal, title: "Complete"){ _, _, _ in
+            let todo = self.models[indexPath.row]
+            self.isCompleted = true
+            todo.setValue(self.isCompleted, forKey: "isCompleted")
+            do
+            {
+                try self.context.save()
+                self.getAllItems()
+            }
+            catch{}
+        }
+        let delete = UIContextualAction(style: .destructive, title: "Delete"){ _, _, _ in
+            self.context.delete(self.models[indexPath.row])
+            do
+            {
+                try self.context.save()
+                self.getAllItems()
+            }
+            catch{}
+        }
+        complete.backgroundColor = .systemYellow
+        return UISwipeActionsConfiguration(actions: [delete,complete])
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        getAllItems()
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    { // update task on left to right swipe
+       let edit = UIContextualAction(style: .normal, title: "Edit"){(action,view,nil) in
+           let subMenuVC = self.storyboard?.instantiateViewController(identifier: "SecondViewController") as? SecondViewController
+           let todo = self.models[indexPath.row]
+           subMenuVC?.itemData = todo
+           self.navigationController?.pushViewController(subMenuVC!, animated: true)
+           print("edit")}
+       edit.backgroundColor=UIColor.init(red: 0/255, green: 0/255, blue: 255/255, alpha: 1)
+       return UISwipeActionsConfiguration(actions: [edit])
     }
     
     //Function for edit task button

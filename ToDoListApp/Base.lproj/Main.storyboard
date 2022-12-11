@@ -56,7 +56,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUf-NU-CmG">
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUf-NU-CmG">
                                                     <rect key="frame" x="299" y="9.3333333333332575" width="51" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="tintColor" red="0.0" green="0.55294117649999996" blue="0.69411764710000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -65,7 +65,7 @@
                                                         <imageReference key="image" image="square.and.pencil" catalog="system" symbolScale="large"/>
                                                     </buttonConfiguration>
                                                 </button>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hGo-Lb-8di">
+                                                <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hGo-Lb-8di">
                                                     <rect key="frame" x="234" y="12.666666666666742" width="51" height="31.000000000000004"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </switch>
@@ -78,6 +78,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <gestureRecognizers/>
                                         <connections>
                                             <outlet property="TaskSubtitle" destination="J3f-MV-nDr" id="Y8X-wb-DBe"/>
                                             <outlet property="TaskTitle" destination="sj6-Wh-aRz" id="h9m-Fs-FVk"/>
@@ -219,7 +220,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j0e-LO-suu">
-                                <rect key="frame" x="-3" y="777" width="395" height="41"/>
+                                <rect key="frame" x="-6" y="777" width="395" height="40"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem image="clear.fill" catalog="system" width="130" style="plain" id="0r7-Gf-5Zj" userLabel="cancel">
