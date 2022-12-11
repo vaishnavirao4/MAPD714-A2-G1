@@ -103,6 +103,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
+    //swiping functionalities from right to left
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let complete = UIContextualAction(style: .normal, title: "Complete"){ _, _, _ in
             let todo = self.models[indexPath.row]
@@ -129,7 +130,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
-    { // update task on left to right swipe
+    {
+        // update task on left to right swipe
        let edit = UIContextualAction(style: .normal, title: "Edit"){(action,view,nil) in
            let subMenuVC = self.storyboard?.instantiateViewController(identifier: "SecondViewController") as? SecondViewController
            let todo = self.models[indexPath.row]
